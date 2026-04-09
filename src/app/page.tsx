@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { NavScroll } from "@/components/NavScroll";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 const IMG = {
   logo: "https://premiere-produkter.no/wp-content/uploads/2025/03/Logo-premiere-produkter.jpeg",
@@ -38,34 +40,7 @@ export default function Home() {
   return (
     <>
       <ScrollReveal />
-      <NavScroll />
-
-      {/* NAV */}
-      <nav className="nav">
-        <div className="nav-inner">
-          <a href="/" className="nav-logo">
-            <Image
-              src={IMG.logo}
-              alt="Premiere Produkter"
-              width={40}
-              height={40}
-              style={{ height: 40, width: "auto", borderRadius: 2 }}
-            />
-          </a>
-          <ul className="nav-links">
-            <li><a href="#kategorier">Produkter</a></li>
-            <li><a href="#kampanje">Kampanjer</a></li>
-            <li><a href="#om">Om oss</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-            <li><a href="/logginn" className="nav-cta">Logg inn</a></li>
-          </ul>
-          <button className="nav-mobile" aria-label="Meny">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </button>
-        </div>
-      </nav>
+      <Nav />
 
       {/* HERO */}
       <section className="hero">
@@ -138,14 +113,14 @@ export default function Home() {
             { name: "Service\u00ADbekledning", desc: "Arbeidsklær, fottøy og verneutstyr for renhold", img: IMG.cat.bekledning, count: "25+" },
             { name: "Engangsprodukter", desc: "Hansker, munnbind, hårnett og takeaway-emballasje", img: IMG.cat.takeaway, count: "20+" },
           ].map((cat) => (
-            <a href="#" className={`cat-card reveal${cat.wide ? " cat-card-wide" : ""}`} key={cat.name}>
+            <Link href="/kategori/rengjoringsmaskiner" className={`cat-card reveal${cat.wide ? " cat-card-wide" : ""}`} key={cat.name}>
               <div className="cat-card-bg" style={{ backgroundImage: `url(${cat.img})` }} />
               <div className="cat-card-inner">
                 <h3 dangerouslySetInnerHTML={{ __html: cat.name }} />
                 <p>{cat.desc}</p>
               </div>
               <span className="cat-card-count">{cat.count} produkter</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -175,7 +150,7 @@ export default function Home() {
                 <li key={f}>{f}</li>
               ))}
             </ul>
-            <a href="#" className="btn-primary">Se kampanjen <Arrow /></a>
+            <Link href="/produkter/ipc-foma-pw-h60" className="btn-primary">Se kampanjen <Arrow /></Link>
           </div>
         </div>
       </section>
@@ -195,7 +170,7 @@ export default function Home() {
             { cat: "Maskiner", name: "IPC Foma gulvvaskemaskin CT231", img: IMG.products.gulvvasker, current: "Fra kr 18 990,-", discount: "-36%" },
             { cat: "Maskiner", name: "Autonom rengjøringsrobot", img: IMG.products.robot, current: "Kontakt oss for pris" },
           ].map((p) => (
-            <a href="#" className="product-card reveal" key={p.name}>
+            <Link href="/produkter/ipc-foma-pw-h60" className="product-card reveal" key={p.name}>
               <div className="product-card-img">
                 <Image src={p.img} alt={p.name} width={400} height={400} style={{ width: "100%", height: "100%", objectFit: "contain", padding: "1.5rem" }} />
               </div>
@@ -208,7 +183,7 @@ export default function Home() {
                   {p.discount && <span className="discount">{p.discount}</span>}
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -250,58 +225,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="footer">
-        <div className="footer-inner">
-          <div>
-            <div className="footer-brand">
-              <Image src={IMG.logo} alt="Premiere Produkter" width={120} height={120} style={{ height: 48, width: "auto", borderRadius: 2 }} />
-            </div>
-            <p className="footer-about">
-              Leverandør av profesjonelle renholdsmidler og rengjøringsutstyr
-              til norske bedrifter siden 1978.
-            </p>
-          </div>
-          <div>
-            <h4>Produkter</h4>
-            <ul className="footer-links">
-              <li><a href="#">Renholdsmidler</a></li>
-              <li><a href="#">Rengjøringsmaskiner</a></li>
-              <li><a href="#">Tørkepapir</a></li>
-              <li><a href="#">Renholdsutstyr</a></li>
-              <li><a href="#">Servicebekledning</a></li>
-              <li><a href="#">Engangsprodukter</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Kundeservice</h4>
-            <ul className="footer-links">
-              <li><a href="#">Kontakt oss</a></li>
-              <li><a href="#">Frakt og levering</a></li>
-              <li><a href="#">Datablad / HMS</a></li>
-              <li><a href="#">Service og vedlikehold</a></li>
-              <li><a href="#">Leasing</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Om oss</h4>
-            <ul className="footer-links">
-              <li><a href="#">Om Premiere Produkter</a></li>
-              <li><a href="#">Forhandlere</a></li>
-              <li><a href="#">Miljøfyrtårn</a></li>
-              <li><a href="#">Åpenhetsloven</a></li>
-              <li><a href="#">Personvern</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <span>&copy; 2026 Premiere Produkter AS. Alle rettigheter forbeholdt.</span>
-          <div className="footer-certs">
-            <span>Org.nr: 912 345 678</span>
-            <span>Miljøfyrtårn-sertifisert</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
