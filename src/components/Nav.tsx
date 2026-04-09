@@ -17,6 +17,7 @@ export function Nav() {
             <li><Link href="/kategori/rengjoringsmaskiner">Produkter</Link></li>
             <li><Link href="/produkter/ipc-foma-pw-h60">Kampanjer</Link></li>
             <li><Link href="/artikler/slik-velger-du-riktig-hoytrykk">Artikler</Link></li>
+            <li><Link href="/seo-rapport">SEO-rapport</Link></li>
             <li><Link href="/#kontakt">Kontakt</Link></li>
             <li><Link href="/logginn" className="nav-cta">Logg inn</Link></li>
           </ul>
